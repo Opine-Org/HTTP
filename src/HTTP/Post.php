@@ -38,7 +38,7 @@ class Post {
 			throw new \Exception('Can not set error on blank field.');
 		}
 		if (!isset($this->errors[$marker])) {
-			$this->errors[$marker] = $marker;
+			$this->errors[$marker] = new \ArrayObject();
 		}
 		$this->errors[$marker][$field] = $error;
 		$this->status = 'error';
