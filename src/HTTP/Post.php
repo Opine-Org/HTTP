@@ -33,10 +33,7 @@ class Post {
 		return $this->status;
 	}
 
-	public function errorFieldSet ($marker, $field, $error) {
-		if (empty($field)) {
-			throw new \Exception('Can not set error on blank field.');
-		}
+	public function errorFieldSet ($marker, $error, $field=null) {
 		if (!isset($this->errors[$marker])) {
 			$this->errors[$marker] = new \ArrayObject();
 		}
