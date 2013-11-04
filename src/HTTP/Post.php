@@ -25,6 +25,10 @@ class Post {
 		$this->status = 'populated';
 	}
 
+	public function statusDeleted () {
+		$this->status = 'deleted';
+	}
+
 	public function statusSaved () {
 		$this->status = 'saved';
 	}
