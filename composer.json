@@ -1,14 +1,14 @@
 {
-    "name": "virtuecenter/http",
+    "name": "opine/http",
     "type": "library",
-    "description": "Post/Response Objects",
+    "description": "Service for encapsulating HTTP Posts and Responses",
     "keywords": [],
     "license": "MIT",
     "authors": [
         {
             "name": "Ryan Mahoney",
             "email": "ryan@virtuecenter.com",
-            "homepage": "http://www.virtuecenter.com",
+            "homepage": "http://opine-php.org",
             "role": "Developer"
         }
     ],
@@ -16,6 +16,6 @@
         "php": ">=5.4.0"
     },
     "autoload": {
-        "psr-0": {"HTTP": "src/"}
+        "psr-4": {"Opine\\": "src/"}
     }
 }

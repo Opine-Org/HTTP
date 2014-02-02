@@ -1,4 +1,4 @@
-http
+HTTP
 ====
 
-HTTP Response and Post Objects
+Service for encapsulating HTTP Posts and Responses
