@@ -2,7 +2,7 @@
 /**
  * Opine\HTTPResponse
  *
- * Copyright (c)2013 Ryan Mahoney, https://github.com/virtuecenter <ryan@virtuecenter.com>
+ * Copyright (c)2013, 2014 Ryan Mahoney, https://github.com/Opine-Org <ryan@virtuecenter.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,17 +25,17 @@
 namespace Opine;
 
 class HTTPResponse {
-	public $body = '';
-	public $mimeType = 'text/html';
-	public $status = 200;
+    public $body = '';
+    public $mimeType = 'text/html';
+    public $status = 200;
 
-	public function __toString () {
-		if (empty($this->body)) {
-			$this->body = '';
-		}
-		if (is_array($this->body)) {
-			return print_r($this->body, true);
-		}
-		return $this->body;
-	}
+    public function __toString () {
+        if (empty($this->body)) {
+            $this->body = '';
+        }
+        if (is_array($this->body)) {
+            return print_r($this->body, true);
+        }
+        return $this->body;
+    }
 }
