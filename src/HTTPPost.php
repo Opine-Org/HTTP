@@ -48,6 +48,10 @@ class HTTPPost {
         $this->status = 'populated';
     }
 
+    public function set ($key, $value) {
+        $this->post[$key] = $value;
+    }
+
     public function statusDeleted () {
         $this->status = 'deleted';
     }
