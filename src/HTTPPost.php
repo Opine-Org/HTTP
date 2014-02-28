@@ -49,7 +49,31 @@ class HTTPPost {
     }
 
     public function set ($key, $value) {
-        $this->post[$key] = $value;
+        if (!is_array($key)) {
+            $this->post[$key] = $value;
+        } else {
+            $count = sizeof($key);
+            switch ($count) {
+                case 1:
+                    $this->post[$key[0]] = $value;
+                    break;
+
+                case 2:
+                    $this->post[$key[0]][$key[1]] = $value;
+                    break;
+
+                case 3:
+                    $this->post[$key[0]][$key[1]][$key[2]] = $value;
+                    break;
+
+                case 4:
+                    $this->post[$key[0]][$key[1]][$key[2]][$key[3]] = $value;
+                    break;
+
+                default:
+                    throw new \Exception('Attempt to modify a post with too much depth: ' . $count);
+            }
+        }
     }
 
     public function statusDeleted () {
