@@ -37,6 +37,11 @@ class HTTPPost {
         return $this->post[$field];
     }
 
+    public function clear () {
+        $this->post = [];
+        $this->errors = [];
+    }
+
     public function populate ($endpoint, Array $post) {
         $this->endpoint = $endpoint;
         $this->post = new \ArrayObject($post);
