@@ -23,12 +23,15 @@
  * THE SOFTWARE.
  */
 namespace Opine;
+use Exception;
+use ArrayObject;
 
 class HTTPPost {
     private $endpoint;
     private $post = [];
     private $status = 'empty';
     private $errors = [];
+    private $responseFields = [];
 
     public function __get ($field) {
         if (!isset($this->post[$field])) {
@@ -44,10 +47,10 @@ class HTTPPost {
 
     public function populate ($endpoint, Array $post) {
         $this->endpoint = $endpoint;
-        $this->post = new \ArrayObject($post);
+        $this->post = new ArrayObject($post);
         foreach ($this->post as $key => &$value) {
             if (is_array($value)) {
-                $value = new \ArrayObject($value);
+                $value = new ArrayObject($value);
             }
         }
         $this->status = 'populated';
@@ -76,7 +79,7 @@ class HTTPPost {
                     break;
 
                 default:
-                    throw new \Exception('Attempt to modify a post with too much depth: ' . $count);
+                    throw new Exception('Attempt to modify a post with too much depth: ' . $count);
             }
         }
     }
@@ -95,7 +98,7 @@ class HTTPPost {
 
     public function errorFieldSet ($marker, $error, $field=null) {
         if (!isset($this->errors[$marker])) {
-            $this->errors[$marker] = new \ArrayObject();
+            $this->errors[$marker] = new ArrayObject();
         }
         $this->errors[$marker][$field] = $error;
         $this->status = 'error';
@@ -103,5 +106,13 @@ class HTTPPost {
 
     public function errorsGet () {
         return $this->errors;
+    }
+
+    public function responseFieldsGet () {
+        return $this->responseFields;
+    }
+
+    public function responseFieldsSet (Array $fields) {
+        $this->responseFields = array_merge($fields, $this->responseFields);
     }
 }
