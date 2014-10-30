@@ -22,9 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Opine;
+namespace Opine\HTTP;
 
-class HTTPResponse {
+class Response {
     public $body = '';
     public $mimeType = 'text/html';
     public $status = 200;

@@ -1,0 +1,3 @@
+services:
+    post:
+        class:     'Opine\HTTP\Post'

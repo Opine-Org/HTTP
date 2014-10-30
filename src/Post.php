@@ -22,11 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Opine;
+namespace Opine\HTTP;
 use Exception;
 use ArrayObject;
 
-class HTTPPost {
+class Post {
     private $endpoint;
     private $post = [];
     private $status = 'empty';
