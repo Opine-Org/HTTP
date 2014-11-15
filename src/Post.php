@@ -27,7 +27,6 @@ use Exception;
 use ArrayObject;
 
 class Post {
-    private $endpoint;
     private $post = [];
     private $status = 'empty';
     private $errors = [];
@@ -40,13 +39,26 @@ class Post {
         return $this->post[$field];
     }
 
+    public function getAndCheck ($field) {
+        if (!isset($this->post[$field])) {
+            throw new Exception('POST error: field "' . $field . '" not present');
+        }
+        return $this->post[$field];
+    }
+
+    public function get ($field) {
+        if (!isset($this->post[$field])) {
+            return false;
+        }
+        return $this->post[$field];
+    }
+
     public function clear () {
         $this->post = [];
         $this->errors = [];
     }
 
-    public function populate ($endpoint, Array $post) {
-        $this->endpoint = $endpoint;
+    public function populate (Array $post) {
         $this->post = new ArrayObject($post);
         foreach ($this->post as $key => &$value) {
             if (is_array($value)) {
