@@ -32,13 +32,6 @@ class Post {
     private $errors = [];
     private $responseFields = [];
 
-    public function __get ($field) {
-        if (!isset($this->post[$field])) {
-            return false;
-        }
-        return $this->post[$field];
-    }
-
     public function getAndCheck ($field) {
         if (!isset($this->post[$field])) {
             throw new Exception('POST error: field "' . $field . '" not present');
