@@ -23,35 +23,43 @@
  * THE SOFTWARE.
  */
 namespace Opine\HTTP;
+
 use Exception;
 use ArrayObject;
 
-class Post {
+class Post
+{
     private $post = [];
     private $status = 'empty';
     private $errors = [];
     private $responseFields = [];
 
-    public function getAndCheck ($field) {
+    public function getAndCheck($field)
+    {
         if (!isset($this->post[$field])) {
-            throw new Exception('POST error: field "' . $field . '" not present');
+            throw new Exception('POST error: field "'.$field.'" not present');
         }
+
         return $this->post[$field];
     }
 
-    public function get ($field) {
+    public function get($field)
+    {
         if (!isset($this->post[$field])) {
             return false;
         }
+
         return $this->post[$field];
     }
 
-    public function clear () {
+    public function clear()
+    {
         $this->post = [];
         $this->errors = [];
     }
 
-    public function populate (Array $post) {
+    public function populate(Array $post)
+    {
         $this->post = new ArrayObject($post);
         foreach ($this->post as $key => &$value) {
             if (is_array($value)) {
@@ -61,7 +69,8 @@ class Post {
         $this->status = 'populated';
     }
 
-    public function set ($key, $value) {
+    public function set($key, $value)
+    {
         if (!is_array($key)) {
             $this->post[$key] = $value;
         } else {
@@ -84,24 +93,28 @@ class Post {
                     break;
 
                 default:
-                    throw new Exception('Attempt to modify a post with too much depth: ' . $count);
+                    throw new Exception('Attempt to modify a post with too much depth: '.$count);
             }
         }
     }
 
-    public function statusDeleted () {
+    public function statusDeleted()
+    {
         $this->status = 'deleted';
     }
 
-    public function statusSaved () {
+    public function statusSaved()
+    {
         $this->status = 'saved';
     }
 
-    public function statusCheck () {
+    public function statusCheck()
+    {
         return $this->status;
     }
 
-    public function errorFieldSet ($marker, $error, $field=null) {
+    public function errorFieldSet($marker, $error, $field = null)
+    {
         if (!isset($this->errors[$marker])) {
             $this->errors[$marker] = new ArrayObject();
         }
@@ -109,15 +122,18 @@ class Post {
         $this->status = 'error';
     }
 
-    public function errorsGet () {
+    public function errorsGet()
+    {
         return $this->errors;
     }
 
-    public function responseFieldsGet () {
+    public function responseFieldsGet()
+    {
         return $this->responseFields;
     }
 
-    public function responseFieldsSet (Array $fields) {
+    public function responseFieldsSet(Array $fields)
+    {
         $this->responseFields = array_merge($fields, $this->responseFields);
     }
 }
